@@ -2,7 +2,7 @@
 // @name         免登录下载天翼云盘分享文件
 // @namespace    https://github.com/Aruelius/Cloud189_Greasyfork
 // @namespace    https://greasyfork.org/en/scripts/401709
-// @version      0.6
+// @version      0.7
 // @description  可以让你不登录天翼云盘也可以下载分享的文件，当分享的内容为目录时，需要单独点击文件下载，当分享的内容为单个文件时，直接点击下载按钮
 // @author       Aruelius
 // @include      https://cloud.189.cn/t/*
@@ -20,7 +20,8 @@ window.onload = function(){
             if(document.cookie.indexOf("COOKIE_LOGIN_USE") != -1){
                 break;
             };
-            if (!document.getElementsByClassName("file-info")[0].innerText.split("\n")[3]){
+            var shareType = document.getElementsByClassName("file-info")[0].innerText.split("\n")[3];
+            if (!shareType && shareType != undefined){
                 let saveAs = document.getElementsByClassName("btn btn-save-as")[0].innerText;
                 let title = document.getElementsByClassName("file-info")[0].innerText.split("\n")[0].split(" ")[0];
                 console.log(title);
@@ -60,7 +61,7 @@ window.onload = function(){
                         can_open_link.href = fileBox[fileName];
                     }
                     else {
-                        document.getElementsByClassName("col-name-box")[i].addEventListener("click", function() { window.open(fileBox[fileName])});
+                        document.getElementsByClassName("col-name-box")[i].addEventListener("click", function() { window.open(fileBox[fileName]) });
                     };
                     // document.getElementsByClassName("open-link")[i].href = fileBox[fileName];
                     for (let i=0; i<document.getElementsByClassName("play").length; i++) {
