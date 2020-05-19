@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name         免登录下载天翼云盘分享文件
 // @namespace    https://github.com/Aruelius/Cloud189_Greasyfork
-// @namespace    https://greasyfork.org/en/scripts/401709
-// @version      0.7
+// @namespace    https://greasyfork.org/zh-CN/scripts/401709
+// @version      0.8
 // @description  可以让你不登录天翼云盘也可以下载分享的文件，当分享的内容为目录时，需要单独点击文件下载，当分享的内容为单个文件时，直接点击下载按钮
 // @author       Aruelius
 // @include      https://cloud.189.cn/t/*
@@ -18,6 +18,12 @@ window.onload = function(){
     async function main(ms) {
         while(true){
             if(document.cookie.indexOf("COOKIE_LOGIN_USE") != -1){
+                break;
+            };
+            if (window.downloadUrl) {
+                document.getElementsByClassName("btn btn-download")[0].target = "_blank";
+                document.getElementsByClassName("btn btn-download")[0].href = downloadUrl;
+                document.getElementsByClassName("btn btn-download")[0].className = "btn btn-download download";
                 break;
             };
             var shareType = document.getElementsByClassName("file-info")[0].innerText.split("\n")[3];
