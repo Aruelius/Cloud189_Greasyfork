@@ -1,6 +1,8 @@
 # Cloud189_Greasyfork
 免登录下载天翼云盘分享文件油猴脚本
 
+## 现在天翼云盘需要登录才能下载，会检查 Cookie，所以本脚本应该是失效了
+
 ### 油猴地址：https://greasyfork.org/zh-CN/scripts/401709
 
 ## 注意事项
